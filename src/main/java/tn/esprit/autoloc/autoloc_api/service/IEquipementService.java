@@ -1,0 +1,20 @@
+package tn.esprit.autoloc.autoloc_api.service;
+
+import tn.esprit.autoloc.autoloc_api.domain.Equipement;
+
+import java.util.List;
+
+public interface IEquipementService {
+
+    List<Equipement> retrieveAllEquipements();
+
+    Equipement addEquipement(Equipement eq);
+
+    Equipement updateEquipement(Equipement eq);
+
+    Equipement retrieveEquipement(Long idEquipement);
+
+    void removeEquipement(Long idEquipement);
+
+    List<Equipement> addEquipements(List<Equipement> equipements);
+}
