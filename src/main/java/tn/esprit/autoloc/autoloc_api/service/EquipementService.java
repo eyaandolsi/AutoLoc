@@ -1,13 +1,16 @@
 package tn.esprit.autoloc.autoloc_api.service;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import tn.esprit.autoloc.autoloc_api.domain.Equipement;
 import tn.esprit.autoloc.autoloc_api.repository.EquipementRepository;
 
 import java.util.List;
-
+@RequiredArgsConstructor
+@Service
 public class EquipementService implements IEquipementService {
 
-    EquipementRepository EqRepo;
+    final EquipementRepository EqRepo;
 
     @Override
     public List<Equipement> retrieveAllEquipements() {

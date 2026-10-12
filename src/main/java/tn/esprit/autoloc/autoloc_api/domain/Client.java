@@ -29,7 +29,7 @@ public class Client {
     @Column(nullable = false, unique = true, length = 30)
     private String numPermis;
     @Column(nullable = false)
-    private LocalDate dateInscription;
+    private String dateInscription;
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Reservation> reservations = new ArrayList<>();
 }

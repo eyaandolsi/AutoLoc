@@ -1,13 +1,17 @@
 package tn.esprit.autoloc.autoloc_api.service;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import tn.esprit.autoloc.autoloc_api.domain.Reservation;
 import tn.esprit.autoloc.autoloc_api.repository.ReservationRepository;
 
 import java.util.List;
 
+@RequiredArgsConstructor
+@Service
 public class ReservationService implements IReservationService {
 
-    ReservationRepository RRepo;
+   final ReservationRepository RRepo;
 
     @Override
     public List<Reservation> retrieveAllReservations() {
