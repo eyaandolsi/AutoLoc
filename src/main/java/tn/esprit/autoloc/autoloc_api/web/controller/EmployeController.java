@@ -1,4 +1,3 @@
-
 package tn.esprit.autoloc.autoloc_api.web.controller;
 
 import lombok.RequiredArgsConstructor;
@@ -38,5 +37,17 @@ public class EmployeController {
     @PutMapping("/updateEmploye")
     public Employe updateEmploye(@RequestBody Employe e) {
         return employeService.updateEmploye(e);
+    }
+
+    // Scénario 1 : affecter un employé à une agence
+    @PutMapping("/affecterEmploye/{idEmploye}/{idAgence}")
+    public Employe affecterEmploye(@PathVariable Long idEmploye, @PathVariable Long idAgence) {
+        return employeService.affecterEmploye(idEmploye, idAgence);
+    }
+
+    // Scénario 1 : désaffecter un employé
+    @PutMapping("/desaffecterEmploye/{idEmploye}")
+    public Employe desaffecterEmploye(@PathVariable Long idEmploye) {
+        return employeService.desaffecterEmploye(idEmploye);
     }
 }

@@ -1,4 +1,3 @@
-
 package tn.esprit.autoloc.autoloc_api.web.controller;
 
 import lombok.RequiredArgsConstructor;
@@ -38,5 +37,23 @@ public class VehiculeController {
     @PutMapping("/updateVehicule")
     public Vehicule updateVehicule(@RequestBody Vehicule v) {
         return vehiculeService.updateVehicule(v);
+    }
+
+    // Scénario 2 : rattacher un véhicule neuf à une agence (ex : Sfax)
+    @PutMapping("/affecterVehicule/{idVehicule}/{idAgence}")
+    public Vehicule affecterVehicule(@PathVariable Long idVehicule, @PathVariable Long idAgence) {
+        return vehiculeService.affecterVehicule(idVehicule, idAgence);
+    }
+
+    // Scénario 3 : installer un équipement (siège bébé)
+    @PutMapping("/affecterEquipement/{idVehicule}/{idEquipement}")
+    public Vehicule affecterEquipement(@PathVariable Long idVehicule, @PathVariable Long idEquipement) {
+        return vehiculeService.affecterEquipement(idVehicule, idEquipement);
+    }
+
+    // Scénario 3 : retirer l'équipement au retour
+    @PutMapping("/desaffecterEquipement/{idVehicule}/{idEquipement}")
+    public Vehicule desaffecterEquipement(@PathVariable Long idVehicule, @PathVariable Long idEquipement) {
+        return vehiculeService.desaffecterEquipement(idVehicule, idEquipement);
     }
 }

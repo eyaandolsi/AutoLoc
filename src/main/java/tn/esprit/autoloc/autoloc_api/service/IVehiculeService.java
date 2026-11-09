@@ -17,4 +17,12 @@ public interface IVehiculeService {
     void removeVehicule(Long idVehicule);
 
     List<Vehicule> addVehicules(List<Vehicule> vehicules);
+
+    // Scénario 2 : rattacher un véhicule à une agence
+    Vehicule affecterVehicule(Long idVehicule, Long idAgence);
+
+    // Scénario 3 : installer / retirer un équipement
+    Vehicule affecterEquipement(Long idVehicule, Long idEquipement);
+
+    Vehicule desaffecterEquipement(Long idVehicule, Long idEquipement);
 }
