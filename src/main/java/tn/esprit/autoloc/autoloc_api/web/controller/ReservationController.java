@@ -3,9 +3,12 @@ package tn.esprit.autoloc.autoloc_api.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import tn.esprit.autoloc.autoloc_api.domain.Reservation;
 import tn.esprit.autoloc.autoloc_api.service.IReservationService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -38,5 +41,17 @@ public class ReservationController {
     @PutMapping("/updateReservation")
     public Reservation updateReservation(@RequestBody Reservation r) {
         return reservationService.updateReservation(r);
+    }
+
+    // Scénario 14 : rechercher les réservations
+    // dont la date de début est postérieure à une date donnée
+
+    @GetMapping("/date-apres")
+    public List<Reservation> getReservationsAfterDate(
+            @RequestParam
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+            LocalDate date) {
+
+        return reservationService.getReservationsAfterDate(date);
     }
 }

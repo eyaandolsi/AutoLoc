@@ -25,4 +25,12 @@ public interface IVehiculeService {
     Vehicule affecterEquipement(Long idVehicule, Long idEquipement);
 
     Vehicule desaffecterEquipement(Long idVehicule, Long idEquipement);
+
+    //Key
+    List<Vehicule> getVehiculesByMarque(String marque);
+    List<Vehicule> getVehiculesByCategorie(String categorie);
+    List<Vehicule> getVehiculesByStatut(String statut);
+    List<Vehicule> getVehiculesByTarif(Double tarif);
+    List<Vehicule> getVehiculesByMarqueAndStatut(
+            String marque, String statut);
 }

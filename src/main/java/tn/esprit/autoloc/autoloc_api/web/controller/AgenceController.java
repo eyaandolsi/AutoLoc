@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.autoloc.autoloc_api.domain.Agence;
 import tn.esprit.autoloc.autoloc_api.service.IAgenceService;
-
+import org.springframework.format.annotation.DateTimeFormat;
 import java.util.List;
 
 @RestController
@@ -38,5 +38,10 @@ public class AgenceController {
     @PutMapping("/updateAgence")
     public Agence updateAgence(@RequestBody Agence a) {
         return agenceService.updateAgence(a);
+    }
+    @GetMapping("/ville/{ville}")
+    public List<Agence> getAgencesByVille(
+            @PathVariable String ville) {
+        return agenceService.getAgencesByVille(ville);
     }
 }

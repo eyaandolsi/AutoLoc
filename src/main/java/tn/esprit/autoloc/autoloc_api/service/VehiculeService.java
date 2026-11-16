@@ -1,11 +1,14 @@
+
 package tn.esprit.autoloc.autoloc_api.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import tn.esprit.autoloc.autoloc_api.domain.Agence;
 import tn.esprit.autoloc.autoloc_api.domain.Equipement;
 import tn.esprit.autoloc.autoloc_api.domain.Vehicule;
+
 import tn.esprit.autoloc.autoloc_api.repository.AgenceRepository;
 import tn.esprit.autoloc.autoloc_api.repository.EquipementRepository;
 import tn.esprit.autoloc.autoloc_api.repository.VehiculeRepository;
@@ -50,36 +53,71 @@ public class VehiculeService implements IVehiculeService {
         return (List<Vehicule>) VRepo.saveAll(vehicules);
     }
 
-    // Scénario 2 : véhicule neuf rattaché à l'agence de Sfax
+    // Affecter un véhicule à une agence
     @Override
     @Transactional
     public Vehicule affecterVehicule(Long idVehicule, Long idAgence) {
         Vehicule vehicule = VRepo.findById(idVehicule).get();
         Agence agence = agenceRepository.findById(idAgence).get();
-        // Côté propriétaire de la relation
+
         vehicule.setAgence(agence);
+
         return VRepo.save(vehicule);
     }
 
-    // Scénario 3 : l'agent installe le siège bébé
+    // Affecter un équipement à un véhicule
     @Override
     @Transactional
     public Vehicule affecterEquipement(Long idVehicule, Long idEquipement) {
         Vehicule vehicule = VRepo.findById(idVehicule).get();
         Equipement equipement = equipementRepository.findById(idEquipement).get();
-        // Côté parent choisi : Vehicule (propriétaire du @JoinTable)
+
         vehicule.getEquipements().add(equipement);
+
         return VRepo.save(vehicule);
     }
 
-    // Scénario 3 : l'agent retire le siège bébé au retour
+    // Désaffecter un équipement
     @Override
     @Transactional
     public Vehicule desaffecterEquipement(Long idVehicule, Long idEquipement) {
         Vehicule vehicule = VRepo.findById(idVehicule).get();
         Equipement equipement = equipementRepository.findById(idEquipement).get();
-        // On enlève le fils du parent
+
         vehicule.getEquipements().remove(equipement);
+
         return VRepo.save(vehicule);
+    }
+
+    // Scénario 1 : rechercher par marque
+    @Override
+    public List<Vehicule> getVehiculesByMarque(String marque) {
+        return VRepo.findByMarque(marque);
+    }
+
+    // Scénario 2 : rechercher par catégorie
+    @Override
+    public List<Vehicule> getVehiculesByCategorie(String categorie) {
+        return VRepo.findByCategorie(categorie);
+    }
+
+    // Scénario 3 : rechercher par statut
+    @Override
+    public List<Vehicule> getVehiculesByStatut(String statut) {
+        return VRepo.findByStatut(statut);
+    }
+
+    // Scénario 8 : rechercher par tarif supérieur à une valeur
+    @Override
+    public List<Vehicule> getVehiculesByTarif(Double tarif) {
+        return VRepo.findByTarifJournalierGreaterThan(tarif);
+    }
+
+    // Scénario 11 : rechercher par marque ET statut
+    @Override
+    public List<Vehicule> getVehiculesByMarqueAndStatut(
+            String marque, String statut) {
+
+        return VRepo.findByMarqueAndStatut(marque, statut);
     }
 }

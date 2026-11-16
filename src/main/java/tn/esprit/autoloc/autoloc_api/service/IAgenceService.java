@@ -12,5 +12,6 @@ public interface IAgenceService {
     Agence retrieveAgence(Long idAgence);
     void removeAgence(Long idAgence);
     List<Agence> addAgences (List<Agence> Agences);
+    List<Agence> getAgencesByVille(String ville);
     }
 
